@@ -1,0 +1,16 @@
+<Window x:Class="PulseBar.App.UI.BarWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="clr-namespace:PulseBar.App.UI"
+        Title="Pulse Bar"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        ResizeMode="NoResize" SizeToContent="WidthAndHeight"
+        ShowInTaskbar="False" ShowActivated="False" Topmost="True"
+        Cursor="Hand" ToolTip="Click for details">
+  <StackPanel x:Name="Pills" Orientation="Horizontal" Margin="2" Background="#01000000">
+    <ui:Pill x:Name="CpuPill" Label="CPU" />
+    <ui:Pill x:Name="GpuPill" Label="GPU" />
+    <ui:Pill x:Name="RamPill" Label="RAM" />
+    <ui:Pill x:Name="NetPill" Label="NET" />
+  </StackPanel>
+</Window>

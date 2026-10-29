@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <!-- WinForms only for NotifyIcon (tray), Screen and PowerStatus. -->
+    <UseWindowsForms>true</UseWindowsForms>
+    <!-- Lets the app compile on Linux/macOS too (it only runs on Windows). -->
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <!-- No NuGet dependencies, so nothing to lock; a lock file here would also pin
+         the runtime identifier and break publishing for both x64 and arm64. -->
+    <RestorePackagesWithLockFile>false</RestorePackagesWithLockFile>
+
+    <AssemblyName>PulseBar</AssemblyName>
+    <RootNamespace>PulseBar.App</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\PulseBar.ico</ApplicationIcon>
+    <RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <!-- WFAC010 is a WinForms rule; this is a WPF app, which takes its DPI mode from the manifest. -->
+    <NoWarn>$(NoWarn);WFAC010</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- WPF and WinForms both define Application, MessageBox, etc.; keep WinForms explicit. -->
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+    <!-- UseWPF drops System.IO from implicit usings (Path clashes with Shapes.Path); we only use IO's. -->
+    <Using Include="System.IO" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\PulseBar.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PulseBar.Core\PulseBar.Core.csproj" />
+  </ItemGroup>
+
+</Project>

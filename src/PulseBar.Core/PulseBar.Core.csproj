@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Platform-neutral logic: maths, formatting, settings. No Windows APIs here,
+       so it builds and is unit-tested on any OS. -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <!-- No NuGet dependencies, so nothing to lock; a lock file here would also pin
+         the runtime identifier and break publishing for both x64 and arm64. -->
+    <RestorePackagesWithLockFile>false</RestorePackagesWithLockFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="PulseBar.Core.Tests" />
+  </ItemGroup>
+
+</Project>
